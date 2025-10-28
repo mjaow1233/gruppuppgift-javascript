@@ -2,7 +2,7 @@ body {
   font-family: system-ui, sans-serif;
   background: #f6f8fa;
   color: #333;
-  margin: 0;
+  margin: 5%;
   padding: 0;
 }
 
@@ -16,7 +16,7 @@ footer {
 
 .container {
   max-width: 700px;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 0 1rem;
 }
 
@@ -39,11 +39,12 @@ footer {
 
 .person {
   background: white;
-  padding: 1rem;
+  padding: 0.1rem 1rem 0.1rem 1rem;
+
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
 .person b {
