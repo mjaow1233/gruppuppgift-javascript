@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sortera Personer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Huvudrubrik för sidan -->
+  <h1>Sortera Personer</h1>
+
+  <!-- Kontrollsektion med dropdown-menyer för sortering -->
+  <div class="controls">
+    <label for="searchField">Sök:</label>
+    <input id="searchField" class="search-field" type="text" placeholder="Sök efter namn, e-post eller ålder...">
+
+    <label for="sortSelect">Sortera efter:</label>
+    <select id="sortSelect" class="sort-field">
+      <option value="firstName">Förnamn</option>
+      <option value="lastName">Efternamn</option>
+      <option value="email">E-post</option>
+      <option value="age">Ålder</option>
+    </select>
+
+    <label for="orderSelect">Ordning:</label>
+    <select id="orderSelect" class="order-field">
+      <option value="asc">Stigande (A-Ö / Låg-Hög)</option>
+      <option value="desc">Fallande (Ö-A / Hög-Låg)</option>
+    </select>
+  </div>
+
+  <!-- Här visas alla personer -->
+  <article class="people"></article>
+
+  <!-- Ladda JavaScript-filen sist i body -->
+  <script type="module" src="sorter-simple.js"></script>
+</body>
+
+</html>
