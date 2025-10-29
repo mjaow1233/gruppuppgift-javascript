@@ -60,6 +60,22 @@ document.querySelector('.search-field')
     render(event.target.value);
   });
 
+  const calculateAge = (birthDateString) => {
+    const today = new Date();
+    const [y,m,d] = birthDateString.split('-').map(Number);
+    
+    const birth = new Date(y,m-1,d);
+    let age = today.getFullYear() - birth.getFullYear();
+
+    const hasNotHadBirthday = 
+    today.getMonth() < birth.getMonth() ||
+    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
+
+  if (hasNotHadBirthday) age--;
+  return age;
+};
+    
+
 
 // initial rendering of list of people to screen
 render();
