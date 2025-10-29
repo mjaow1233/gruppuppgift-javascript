@@ -51,10 +51,11 @@ function render(search = '') {
       else if (sortBy === 'email')
         return a.email.localeCompare(b.email);
     })
+
     .map(({ firstName, lastName, email, birthDate }) => `
     <section class="person">
       <p><b>First name:</b> ${firstName}</p>
-      <p><b>Last name:</b> ${lastName}</p>
+      <p><b>Last name:</b> ${lastName}</p>  
       <p><b>Email:</b> ${email}</p>
       <p><b>Age:</b> ${calculateAge(birthDate)}</p>
     </section>
@@ -66,6 +67,20 @@ function render(search = '') {
   document.querySelector('.people').innerHTML = html;
 
 }
+
+// add event listeners to sort buttons
+document.querySelector('#sort-firstname')
+  .addEventListener('click', () => { 
+    sortBy = 'firstName'; 
+    render(document.querySelector('.search-field').value); 
+  });
+
+document.querySelector('#sort-email')
+  .addEventListener('click', () => { 
+    sortBy = 'email'; 
+    render(document.querySelector('.search-field').value); 
+  });
+// End of sort button event listeners
 
 // add a keyup event handler to our search field
 document.querySelector('.search-field')
