@@ -36,22 +36,21 @@ for (let { firstName, lastName, email } of people) {
 };
     
 
+let sortBy = 'firstName'; // standard-sortering
 function render(search = '') {
 
-  // A modern programming pattern (in many languages)
-  // is using a chain of array methods to calculate a result
-  // filter, storting, mapping until we're happy :)
-
-  // Using map instead of a loop
-  // to convert our array of objects (people) to html
   let html = people
-    // return true on filtering if search is an empty string
-    // or firstName starts with the search
-    .filter(({ firstName }) => search === ''
-      || firstName.toLowerCase().startsWith(search.toLowerCase()))
-    // sort by firstName
-    .toSorted((a, b) => a.firstName > b.firstName ? 1 : - 1)
-    // map to convert each element to a string with html
+
+    .filter(({ firstName, email }) => search === ''
+      || firstName.toLowerCase().startsWith(search.toLowerCase())
+      || email.toLowerCase().includes(search.toLowerCase()))
+
+    .toSorted((a, b) => {
+      if (sortBy === 'firstName')
+        return a.firstName.localeCompare(b.firstName);
+      else if (sortBy === 'email')
+        return a.email.localeCompare(b.email);
+    })
     .map(({ firstName, lastName, email, birthDate }) => `
     <section class="person">
       <p><b>First name:</b> ${firstName}</p>
@@ -83,3 +82,4 @@ document.querySelector('.search-field')
 render();
 
 window.calculateAge = calculateAge;
+
