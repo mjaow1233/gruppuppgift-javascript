@@ -14,6 +14,9 @@
 
   <!-- Kontrollsektion med dropdown-menyer för sortering -->
   <div class="controls">
+    <label for="searchField">Sök:</label>
+    <input id="searchField" class="search-field" type="text" placeholder="Sök efter namn, e-post eller ålder...">
+
     <label for="sortSelect">Sortera efter:</label>
     <select id="sortSelect" class="sort-field">
       <option value="firstName">Förnamn</option>
@@ -33,7 +36,7 @@
   <article class="people"></article>
 
   <!-- Ladda JavaScript-filen sist i body -->
-  <script type="module" src="sorter-clean.js"></script>
+  <script type="module" src="sorter-simple.js"></script>
 </body>
 
 </html>
