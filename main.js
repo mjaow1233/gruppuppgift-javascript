@@ -20,6 +20,21 @@ for (let { firstName, lastName, email } of people) {
     </div>
   `;
 }*/
+  const calculateAge = (birthDateString) => {
+    const today = new Date();
+    const [y,m,d] = birthDateString.split('-').map(Number);
+    
+    const birth = new Date(y,m-1,d);
+    let age = today.getFullYear() - birth.getFullYear();
+
+    const hasNotHadBirthday = 
+    today.getMonth() < birth.getMonth() ||
+    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
+
+  if (hasNotHadBirthday) age--;
+  return age;
+};
+    
 
 function render(search = '') {
 
@@ -37,11 +52,12 @@ function render(search = '') {
     // sort by firstName
     .toSorted((a, b) => a.firstName > b.firstName ? 1 : - 1)
     // map to convert each element to a string with html
-    .map(({ firstName, lastName, email }) => `
+    .map(({ firstName, lastName, email, birthDate }) => `
     <section class="person">
       <p><b>First name:</b> ${firstName}</p>
       <p><b>Last name:</b> ${lastName}</p>
       <p><b>Email:</b> ${email}</p>
+      <p><b>Age:</b> ${calculateAge(birthDate)}</p>
     </section>
   `)
     // join to join our array of strings into one large string
@@ -60,23 +76,10 @@ document.querySelector('.search-field')
     render(event.target.value);
   });
 
-  const calculateAge = (birthDateString) => {
-    const today = new Date();
-    const [y,m,d] = birthDateString.split('-').map(Number);
-    
-    const birth = new Date(y,m-1,d);
-    let age = today.getFullYear() - birth.getFullYear();
 
-    const hasNotHadBirthday = 
-    today.getMonth() < birth.getMonth() ||
-    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
-
-  if (hasNotHadBirthday) age--;
-  return age;
-};
-    
 
 
 // initial rendering of list of people to screen
 render();
 
+window.calculateAge = calculateAge;
