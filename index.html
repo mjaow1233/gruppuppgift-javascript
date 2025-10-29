@@ -3,13 +3,39 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
   <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
-  <input class="search-field" type="text" placeholder="Search by first name">
-  <article class="people"></article>
+  <header class="site-header">
+    <div class="container">
+      <nav class="main-nav" aria-label="Huvudmeny">
+        <ul>
+          <li><a href="index.html" class="nav-link">Hem</a></li>
+          <li><a href="sorter.html" class="nav-link">Sortera</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <input class="search-field" type="text" placeholder="Search by first name">
+    <article class="people"></article>
+  </main>
+
+  <!-- Mark current page in the menu -->
+  <script>
+    (function () {
+      const links = document.querySelectorAll('.main-nav a');
+      const path = location.pathname.split('/').pop() || 'index.html';
+      links.forEach(a => {
+        if (a.getAttribute('href') === path) a.classList.add('active');
+      });
+    })();
+  </script>
+
   <!-- Add your script last in body -->
   <script type="module" src="main.js"></script>
 </body>

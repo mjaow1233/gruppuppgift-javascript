@@ -9,11 +9,23 @@
 </head>
 
 <body>
-  <!-- Huvudrubrik för sidan -->
-  <h1>Sortera Personer</h1>
+  <header class="site-header">
+    <div class="container">
+      <nav class="main-nav" aria-label="Huvudmeny">
+        <ul>
+          <li><a href="index.html" class="nav-link">Hem</a></li>
+          <li><a href="sorter.html" class="nav-link">Sortera</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Kontrollsektion med dropdown-menyer för sortering -->
-  <div class="controls">
+  <main class="container">
+    <!-- Huvudrubrik för sidan -->
+    <h1>Sortera Personer</h1>
+
+    <!-- Kontrollsektion med dropdown-menyer för sortering -->
+    <div class="controls">
     <label for="searchField">Sök:</label>
     <input id="searchField" class="search-field" type="text" placeholder="Sök efter namn, e-post eller ålder...">
 
@@ -35,8 +47,20 @@
   <!-- Här visas alla personer -->
   <article class="people"></article>
 
+  <!-- Mark current page in the menu -->
+  <script>
+    (function () {
+      const links = document.querySelectorAll('.main-nav a');
+      const path = location.pathname.split('/').pop() || 'index.html';
+      links.forEach(a => {
+        if (a.getAttribute('href') === path) a.classList.add('active');
+      });
+    })();
+  </script>
+
   <!-- Ladda JavaScript-filen sist i body -->
   <script type="module" src="sorter-simple.js"></script>
+</main>
 </body>
 
 </html>
