@@ -36,26 +36,26 @@ for (let { firstName, lastName, email } of people) {
 };
     
 
-let sortBy = 'firstName'; // standard-sortering
 function render(search = '') {
 
+  // A modern programming pattern (in many languages)
+  // is using a chain of array methods to calculate a result
+  // filter, storting, mapping until we're happy :)
+
+  // Using map instead of a loop
+  // to convert our array of objects (people) to html
   let html = people
-
-    .filter(({ firstName, email }) => search === ''
-      || firstName.toLowerCase().startsWith(search.toLowerCase())
-      || email.toLowerCase().includes(search.toLowerCase()))
-
-    .toSorted((a, b) => {
-      if (sortBy === 'firstName')
-        return a.firstName.localeCompare(b.firstName);
-      else if (sortBy === 'email')
-        return a.email.localeCompare(b.email);
-    })
-
+    // return true on filtering if search is an empty string
+    // or firstName starts with the search
+    .filter(({ firstName }) => search === ''
+      || firstName.toLowerCase().startsWith(search.toLowerCase()))
+    // sort by firstName
+    .toSorted((a, b) => a.firstName > b.firstName ? 1 : - 1)
+    // map to convert each element to a string with html
     .map(({ firstName, lastName, email, birthDate }) => `
     <section class="person">
       <p><b>First name:</b> ${firstName}</p>
-      <p><b>Last name:</b> ${lastName}</p>  
+      <p><b>Last name:</b> ${lastName}</p>
       <p><b>Email:</b> ${email}</p>
       <p><b>Age:</b> ${calculateAge(birthDate)}</p>
     </section>
@@ -67,20 +67,6 @@ function render(search = '') {
   document.querySelector('.people').innerHTML = html;
 
 }
-
-// add event listeners to sort buttons
-document.querySelector('#sort-firstname')
-  .addEventListener('click', () => { 
-    sortBy = 'firstName'; 
-    render(document.querySelector('.search-field').value); 
-  });
-
-document.querySelector('#sort-email')
-  .addEventListener('click', () => { 
-    sortBy = 'email'; 
-    render(document.querySelector('.search-field').value); 
-  });
-// End of sort button event listeners
 
 // add a keyup event handler to our search field
 document.querySelector('.search-field')
@@ -97,4 +83,3 @@ document.querySelector('.search-field')
 render();
 
 window.calculateAge = calculateAge;
-
